@@ -34,6 +34,7 @@
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
             button1 = new Button();
             button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)table1).BeginInit();
@@ -42,10 +43,10 @@
             // table1
             // 
             table1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            table1.Location = new Point(108, 126);
+            table1.Location = new Point(12, 106);
             table1.Name = "table1";
             table1.RowHeadersWidth = 51;
-            table1.Size = new Size(806, 693);
+            table1.Size = new Size(934, 693);
             table1.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn1
@@ -78,14 +79,21 @@
             // 
             // dataGridViewTextBoxColumn5
             // 
-            dataGridViewTextBoxColumn5.HeaderText = "Score";
+            dataGridViewTextBoxColumn5.HeaderText = "YouTube URL";
             dataGridViewTextBoxColumn5.MinimumWidth = 6;
             dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             dataGridViewTextBoxColumn5.Width = 125;
             // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewTextBoxColumn6.HeaderText = "Score";
+            dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            dataGridViewTextBoxColumn6.Width = 125;
+            // 
             // button1
             // 
-            button1.Location = new Point(920, 126);
+            button1.Location = new Point(952, 127);
             button1.Name = "button1";
             button1.Size = new Size(205, 49);
             button1.TabIndex = 1;
@@ -95,7 +103,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(920, 207);
+            button2.Location = new Point(952, 205);
             button2.Name = "button2";
             button2.Size = new Size(205, 56);
             button2.TabIndex = 2;
@@ -129,5 +137,6 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
     }
 }

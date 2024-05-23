@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Newtonsoft.Json;
+using System.Text.Json;
 using SpotifyExplode.Tracks;
+using SpotifyExplode;
 
 namespace MusicHandbook
 {
     public partial class YourSongList : Form
     {
         public List<ScoredSong> Songs { get; private set; }
+        private readonly SpotifyClient _spotify;
 
+        private SongRepository songRepository = new SongRepository();  
         public YourSongList()
         {
             InitializeComponent();
             Songs = new List<ScoredSong>();
+
 
             DataGridViewButtonColumn buttonColumn1 = new DataGridViewButtonColumn();
             buttonColumn1.Name = "Delete song";
@@ -25,6 +29,7 @@ namespace MusicHandbook
             table1.Columns.Add(buttonColumn1);
 
             table1.CellClick += DataGridView_CellClick;
+     
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -47,49 +52,27 @@ namespace MusicHandbook
             Application.Exit();
         }
 
-        private void LoadSongsFromFile()
-        {
-            if (File.Exists("songs.json"))
-            {
-                string json = File.ReadAllText("songs.json");
-                Songs = JsonConvert.DeserializeObject<List<ScoredSong>>(json);
-                LoadSongsToDataGridView();
-            }
-        }
+
 
         private void LoadSongsToDataGridView()
         {
+            Songs = songRepository.Load();
+
             table1.Rows.Clear();
 
             foreach (var track in Songs)
             {
-                table1.Rows.Add("Track", track.Title, string.Join(", ", track.Artists.Select(a => a.Name)), track.Url, track.Score);
+                table1.Rows.Add("Track", track.Title, string.Join(", ", track.Artists.Select(a => a.Name)), track.Url, track.YouTubeUrl, track.Score);
             }
         }
 
-        private void SaveSongsToFile()
-        {
-            string json = JsonConvert.SerializeObject(Songs, Formatting.Indented);
-            File.WriteAllText("songs.json", json);
-        }
+  
 
         private void YourSongList_Load(object sender, EventArgs e)
         {
-            LoadSongsFromFile();
+            LoadSongsToDataGridView();
         }
 
-        private void DataGridView_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            if (table1.Columns[e.ColumnIndex].Name == "URL" && e.RowIndex >= 0)
-            {
-                table1.Cursor = Cursors.Hand;
-            }
-        }
-
-        private void DataGridView_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            table1.Cursor = Cursors.Default;
-        }
 
         private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -100,10 +83,7 @@ namespace MusicHandbook
                 var songToRemove = Songs.FirstOrDefault(song => song.Title == songTitle);
                 if (songToRemove != null)
                 {
-                    Songs.Remove(songToRemove);
-
-                    SaveSongsToFile();
-
+                    songRepository.Delete(songToRemove);
                     LoadSongsToDataGridView();
                 }
             }

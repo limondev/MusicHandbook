@@ -65,7 +65,6 @@
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dataGridViewTextBoxColumn1, dataGridViewTextBoxColumn2, dataGridViewTextBoxColumn3, dataGridViewTextBoxColumn4, dataGridViewTextBoxColumn5 });
             dataGridView1.Dock = DockStyle.Bottom;
             dataGridView1.Location = new Point(0, 153);
             dataGridView1.Name = "dataGridView1";
@@ -73,8 +72,6 @@
             dataGridView1.Size = new Size(1266, 500);
             dataGridView1.TabIndex = 2;
             dataGridView1.CellFormatting += DataGridView1_CellFormatting;
-            dataGridView1.CellMouseEnter += DataGridView_CellMouseEnter;
-            dataGridView1.CellMouseLeave += DataGridView_CellMouseLeave;
             // 
             // dataGridViewTextBoxColumn1
             // 

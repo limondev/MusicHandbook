@@ -50,13 +50,13 @@ namespace MusicHandbook
             Application.Exit();
         }
 
-        private void LoadSongsToDataGridView(string filter = "")
+        public void LoadSongsToDataGridView(string filter = "")
         {
             var songs = _songsClass.LoadSongs(filter);
             table1.Rows.Clear();
             foreach (var track in songs)
             {
-                table1.Rows.Add("Track", track.Title, string.Join(", ", track.Artists.Select(a => a.Name)), track.Url, track.YouTubeUrl, track.Score);
+                table1.Rows.Add("Track", track.Title, string.Join(", ", track.Artists.Select(a => a.Name)), track.TrackId != null ? track.Url : "", track.YouTubeUrl, track.Score);
             }
             SetLastButtonText();
         }
@@ -106,5 +106,7 @@ namespace MusicHandbook
             string filter = textBox2.Text;
             LoadSongsToDataGridView(filter);
         }
+
+
     }
 }

@@ -114,7 +114,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(600, 35);
+            textBox2.Location = new Point(87, 34);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(569, 27);
             textBox2.TabIndex = 3;
@@ -136,8 +136,6 @@
             ((System.ComponentModel.ISupportInitialize)table1).EndInit();
             ResumeLayout(false);
             PerformLayout();
-
- 
         }
 
         #endregion

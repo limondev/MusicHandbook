@@ -10,7 +10,7 @@ namespace MusicHandbook
     public class ScoredSong : Track
     {
         public int Score { get; set; }
-        public string TrackId { get; set; }
-        public string YouTubeUrl { get; set; }
+        public string? TrackId { get; set; }
+        public string? YouTubeUrl { get; set; }
     }
 }

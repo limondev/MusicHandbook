@@ -11,10 +11,12 @@ namespace MusicHandbook
     {
         private readonly SongsClass _songsClass;
         private List<Track> _tracks;
+        private readonly YourSongList _yourSongList;
 
         public SearchForm()
         {
             InitializeComponent();
+            _yourSongList = new YourSongList(); 
             _songsClass = new SongsClass();
             dataGridView1.AutoGenerateColumns = false;
             DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn
@@ -26,6 +28,7 @@ namespace MusicHandbook
             };
             dataGridView1.Columns.Add(buttonColumn);
             dataGridView1.CellContentClick += DataGridView1_CellContentClick;
+      
         }
 
         private async void Search()
@@ -93,6 +96,11 @@ namespace MusicHandbook
         {
             base.OnClosed(e);
             Application.Exit();
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var addSongForm = new AddSongForm(_songsClass, _yourSongList);
+            addSongForm.ShowDialog();
         }
     }
 }

@@ -38,6 +38,7 @@
             dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
             button2 = new Button();
+            button3 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -120,12 +121,23 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // button3
+            // 
+            button3.Location = new Point(1115, 35);
+            button3.Name = "button3";
+            button3.Size = new Size(151, 59);
+            button3.TabIndex = 4;
+            button3.Text = "Add Song Manually";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click; 
+            // 
             // SearchForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1447, 653);
+            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(dataGridView1);
             Controls.Add(button1);
@@ -150,5 +162,6 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private Button button3;
     }
 }

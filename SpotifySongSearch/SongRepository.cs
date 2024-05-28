@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
-using static System.Windows.Forms.Design.AxImporter;
 
 namespace MusicHandbook
 {
@@ -24,7 +23,15 @@ namespace MusicHandbook
         public override void Delete(ScoredSong song)
         {
             List<ScoredSong> songs = Load();
-            songs.RemoveAll(s => s.Id.Value == song.Id.Value);
+            if (song.TrackId != null)
+            { 
+                songs.RemoveAll(s => s.Id.Value == song.Id.Value);
+            }
+            else
+            {
+                songs.RemoveAll(s => s.Title == song.Title);
+            }
+            
             var newjson = JsonSerializer.Serialize(songs, options);
             File.WriteAllText(filePath, newjson);
         }
@@ -33,8 +40,10 @@ namespace MusicHandbook
             List<ScoredSong> songs = base.Load();
             foreach (var song in songs)
             {
-                song.Id = TrackId.Parse(song.TrackId);
-
+                if (song.TrackId != null)
+                {
+                    song.Id = TrackId.Parse(song.TrackId);
+                }
             }
             return songs;
 

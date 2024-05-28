@@ -16,7 +16,7 @@ namespace MusicHandbook
             Columns.Add("Artist", "Artist");
             Columns.Add("URL", "URL");
             Columns.Add("YouTube URL", "YouTube URL");
-            Columns.Add("Score", "Score");
+            Columns.Add("Score (1-10)", "Score (1-10)");
 
             CellBeginEdit += DataGridView1_CellBeginEdit;
             CellContentClick += DataGridView1_CellContentClick;
@@ -30,7 +30,7 @@ namespace MusicHandbook
 
         private void DataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if (Columns[e.ColumnIndex].Name != "Score")
+            if (Columns[e.ColumnIndex].Name != "Score (1-10)")
             {
                 e.Cancel = true;
             }
@@ -71,7 +71,7 @@ namespace MusicHandbook
         }
         private void DataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if (Columns[e.ColumnIndex].Name == "Score")
+            if (Columns[e.ColumnIndex].Name == "Score (1-10)")
             {
                 var cellValue = Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
 

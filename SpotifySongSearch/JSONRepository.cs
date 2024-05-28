@@ -11,7 +11,7 @@ namespace MusicHandbook
     public class JSONRepository<T>
     {
         protected string filePath;
-        protected JsonSerializerOptions options = new JsonSerializerOptions() { WriteIndented = true};
+        protected JsonSerializerOptions options = new JsonSerializerOptions() { WriteIndented = true };
 
         public JSONRepository(string filePath)
         {

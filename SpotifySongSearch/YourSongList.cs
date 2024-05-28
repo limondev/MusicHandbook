@@ -1,35 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Text.Json;
-using SpotifyExplode.Tracks;
-using SpotifyExplode;
 
 namespace MusicHandbook
 {
     public partial class YourSongList : Form
     {
-        public List<ScoredSong> Songs { get; private set; }
-        private readonly SpotifyClient _spotify;
+        private readonly SongsClass _songsClass;
 
-        private SongRepository songRepository = new SongRepository();  
         public YourSongList()
         {
             InitializeComponent();
-            Songs = new List<ScoredSong>();
-
-
-            DataGridViewButtonColumn buttonColumn1 = new DataGridViewButtonColumn();
-            buttonColumn1.Name = "Delete song";
-            buttonColumn1.HeaderText = "Delete song";
-            buttonColumn1.Text = "Delete song";
-            buttonColumn1.UseColumnTextForButtonValue = true;
-            table1.Columns.Add(buttonColumn1);
-
+            InitializeDataGridView();
+            _songsClass = new SongsClass();
             table1.CellClick += DataGridView_CellClick;
-     
+            table1.AutoGenerateColumns = false;
+            textBox2.TextChanged += textBox2_TextChanged;
+        }
+
+        private void InitializeDataGridView()
+        {
+            DataGridViewButtonColumn buttonColumn1 = new DataGridViewButtonColumn
+            {
+                Name = "Delete song",
+                HeaderText = "Delete song",
+                Text = "Delete song",
+                UseColumnTextForButtonValue = true
+            };
+            table1.Columns.Add(buttonColumn1);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -52,44 +50,61 @@ namespace MusicHandbook
             Application.Exit();
         }
 
-
-
-        private void LoadSongsToDataGridView()
+        private void LoadSongsToDataGridView(string filter = "")
         {
-            Songs = songRepository.Load();
-
+            var songs = _songsClass.LoadSongs(filter);
             table1.Rows.Clear();
-
-            foreach (var track in Songs)
+            foreach (var track in songs)
             {
                 table1.Rows.Add("Track", track.Title, string.Join(", ", track.Artists.Select(a => a.Name)), track.Url, track.YouTubeUrl, track.Score);
             }
+            SetLastButtonText();
         }
-
-  
 
         private void YourSongList_Load(object sender, EventArgs e)
         {
             LoadSongsToDataGridView();
         }
 
-
         private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && table1.Columns[e.ColumnIndex].Name == "Delete song")
             {
-                string songTitle = table1.Rows[e.RowIndex].Cells["Name"].Value.ToString();
-
-                var songToRemove = Songs.FirstOrDefault(song => song.Title == songTitle);
-                if (songToRemove != null)
+                if (e.RowIndex == table1.Rows.Count - 1)
                 {
-                    songRepository.Delete(songToRemove);
+                    _songsClass.ClearAllSongs();
                     LoadSongsToDataGridView();
+                }
+                else
+                {
+                    string songTitle = table1.Rows[e.RowIndex].Cells["Name"].Value.ToString();
+                    var songToRemove = _songsClass.Songs.FirstOrDefault(song => song.Title == songTitle);
+                    if (songToRemove != null)
+                    {
+                        _songsClass.DeleteSong(songToRemove);
+                        LoadSongsToDataGridView();
+                    }
                 }
             }
         }
+
+        private void SetLastButtonText()
+        {
+            if (table1.Rows.Count > 0)
+            {
+                var lastRowIndex = table1.Rows.Count - 1;
+                var lastButtonCell = table1.Rows[lastRowIndex].Cells["Delete song"] as DataGridViewButtonCell;
+                if (lastButtonCell != null)
+                {
+                    lastButtonCell.Value = "Delete All";
+                }
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            string filter = textBox2.Text;
+            LoadSongsToDataGridView(filter);
+        }
     }
 }
-
-
-

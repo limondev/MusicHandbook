@@ -10,8 +10,9 @@ namespace MusicHandbook
 {
     public class SongRepository : JSONRepository<ScoredSong>
     {
-        public SongRepository():base("songs.json") {
-        
+        public SongRepository() : base("songs.json")
+        {
+
         }
         public override void Save(ScoredSong song)
         {
@@ -33,10 +34,14 @@ namespace MusicHandbook
             foreach (var song in songs)
             {
                 song.Id = TrackId.Parse(song.TrackId);
-             
+
             }
             return songs;
 
+        }
+        public void ClearAll()
+        {
+            File.Delete(filePath);
         }
     }
 }

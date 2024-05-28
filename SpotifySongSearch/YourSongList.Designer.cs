@@ -37,6 +37,7 @@
             dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
             button1 = new Button();
             button2 = new Button();
+            textBox2 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)table1).BeginInit();
             SuspendLayout();
             // 
@@ -86,7 +87,7 @@
             // 
             // dataGridViewTextBoxColumn6
             // 
-            dataGridViewTextBoxColumn6.HeaderText = "Score";
+            dataGridViewTextBoxColumn6.HeaderText = "Score (1-10)";
             dataGridViewTextBoxColumn6.MinimumWidth = 6;
             dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             dataGridViewTextBoxColumn6.Width = 125;
@@ -111,20 +112,32 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(600, 35);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(569, 27);
+            textBox2.TabIndex = 3;
+            textBox2.TextChanged += textBox2_TextChanged;
+            // 
             // YourSongList
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1154, 789);
+            ClientSize = new Size(1421, 789);
+            Controls.Add(textBox2);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(table1);
             Name = "YourSongList";
-            Text = "Form1";
+            Text = "Your Song List";
             Load += YourSongList_Load;
             ((System.ComponentModel.ISupportInitialize)table1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
+
+ 
         }
 
         #endregion
@@ -132,6 +145,7 @@
         private Table table1;
         private Button button1;
         private Button button2;
+        private TextBox textBox2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;

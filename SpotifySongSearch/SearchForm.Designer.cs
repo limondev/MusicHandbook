@@ -36,21 +36,23 @@
             dataGridViewTextBoxColumn3 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn4 = new DataGridViewTextBoxColumn();
             dataGridViewTextBoxColumn5 = new DataGridViewTextBoxColumn();
+            dataGridViewTextBoxColumn6 = new DataGridViewTextBoxColumn();
             button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(203, 43);
+            textBox1.Location = new Point(87, 51);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(518, 27);
             textBox1.TabIndex = 0;
+            textBox1.TextChanged += textBox1_TextChanged;
             textBox1.KeyDown += Enter_KeyDown;
             // 
             // button1
             // 
-            button1.Location = new Point(800, 27);
+            button1.Location = new Point(684, 35);
             button1.Name = "button1";
             button1.Size = new Size(183, 59);
             button1.TabIndex = 1;
@@ -65,7 +67,6 @@
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Bottom;
             dataGridView1.Location = new Point(0, 153);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
@@ -99,13 +100,19 @@
             // 
             // dataGridViewTextBoxColumn5
             // 
-            dataGridViewTextBoxColumn5.HeaderText = "Score";
+            dataGridViewTextBoxColumn5.HeaderText = "YouTube URL";
             dataGridViewTextBoxColumn5.MinimumWidth = 6;
             dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
+            // dataGridViewTextBoxColumn6
+            // 
+            dataGridViewTextBoxColumn6.HeaderText = "Score (1-10)";
+            dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
             // button2
             // 
-            button2.Location = new Point(1043, 27);
+            button2.Location = new Point(927, 35);
             button2.Name = "button2";
             button2.Size = new Size(158, 59);
             button2.TabIndex = 3;
@@ -118,13 +125,13 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(1266, 653);
+            ClientSize = new Size(1447, 653);
             Controls.Add(button2);
             Controls.Add(dataGridView1);
             Controls.Add(button1);
             Controls.Add(textBox1);
             Name = "SearchForm";
-            Text = "Form1";
+            Text = "SearchForm";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -136,11 +143,12 @@
         private Button button1;
         //private DataGridView dataGridView1;
         private Table dataGridView1;
+        private Button button2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private Button button2;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
     }
 }

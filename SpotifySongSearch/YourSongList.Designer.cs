@@ -38,6 +38,10 @@
             button1 = new Button();
             button2 = new Button();
             textBox2 = new TextBox();
+            comboBox1 = new ComboBox();
+            comboBox2 = new ComboBox();
+            label1 = new Label();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)table1).BeginInit();
             SuspendLayout();
             // 
@@ -114,11 +118,47 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(87, 34);
+            textBox2.Location = new Point(21, 34);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(569, 27);
             textBox2.TabIndex = 3;
             textBox2.TextChanged += textBox2_TextChanged;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
+            comboBox1.Location = new Point(753, 33);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(48, 28);
+            comboBox1.TabIndex = 4;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
+            comboBox2.Location = new Point(871, 33);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(56, 28);
+            comboBox2.TabIndex = 5;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(704, 33);
+            label1.Name = "label1";
+            label1.Size = new Size(43, 20);
+            label1.TabIndex = 6;
+            label1.Text = "From";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(840, 33);
+            label2.Name = "label2";
+            label2.Size = new Size(25, 20);
+            label2.TabIndex = 7;
+            label2.Text = "To";
             // 
             // YourSongList
             // 
@@ -126,6 +166,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1421, 789);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(comboBox2);
+            Controls.Add(comboBox1);
             Controls.Add(textBox2);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -150,5 +194,9 @@
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private ComboBox comboBox1;
+        private ComboBox comboBox2;
+        private Label label1;
+        private Label label2;
     }
 }

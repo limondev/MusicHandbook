@@ -16,8 +16,14 @@ namespace MusicHandbook
             table1.CellClick += DataGridView_CellClick;
             table1.AutoGenerateColumns = false;
             textBox2.TextChanged += textBox2_TextChanged;
+            comboBox1.SelectedIndexChanged += ComboBoxScore_SelectedIndexChanged;
+            comboBox2.SelectedIndexChanged += ComboBoxScore_SelectedIndexChanged;
         }
 
+        private void ComboBoxScore_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadSongsToDataGridView();
+        }
         private void InitializeDataGridView()
         {
             DataGridViewButtonColumn buttonColumn1 = new DataGridViewButtonColumn
@@ -52,15 +58,21 @@ namespace MusicHandbook
 
         public void LoadSongsToDataGridView(string filter = "")
         {
+            int.TryParse(comboBox1.SelectedItem?.ToString(), out int minScore);
+            int.TryParse(comboBox2.SelectedItem?.ToString(), out int maxScore);
+
             var songs = _songsClass.LoadSongs(filter);
+            var filteredSongs = songs.Where(song =>
+                (minScore == 0 || song.Score >= minScore) &&
+                (maxScore == 0 || song.Score <= maxScore)).ToList();
+
             table1.Rows.Clear();
-            foreach (var track in songs)
+            foreach (var track in filteredSongs)
             {
                 table1.Rows.Add("Track", track.Title, string.Join(", ", track.Artists.Select(a => a.Name)), track.TrackId != null ? track.Url : "", track.YouTubeUrl, track.Score);
             }
             SetLastButtonText();
         }
-
         private void YourSongList_Load(object sender, EventArgs e)
         {
             LoadSongsToDataGridView();

@@ -143,7 +143,7 @@
             Controls.Add(button1);
             Controls.Add(textBox1);
             Name = "SearchForm";
-            Text = "SearchForm";
+            Text = "Search";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

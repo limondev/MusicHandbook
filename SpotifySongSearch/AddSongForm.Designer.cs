@@ -108,7 +108,7 @@
             Controls.Add(textBox1);
             Controls.Add(label1);
             Name = "AddSongForm";
-            Text = "AddSongForm";
+            Text = "Add Song Manually";
             ResumeLayout(false);
             PerformLayout();
         }
